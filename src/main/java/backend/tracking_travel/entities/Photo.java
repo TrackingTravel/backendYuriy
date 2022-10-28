@@ -19,4 +19,6 @@ public class Photo {
     private String name;
     private String linkToPhoto;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Route route;
 }

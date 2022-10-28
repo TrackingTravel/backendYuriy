@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "t_country")
@@ -18,8 +18,4 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameOfCountry;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Route> routes;
-
 }

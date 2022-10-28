@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Duration;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "t_route")
@@ -29,6 +29,6 @@ public class Route {
     private Long distanceRoute;
     private Duration durationRoute;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Photo> photos;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Country country;
 }
