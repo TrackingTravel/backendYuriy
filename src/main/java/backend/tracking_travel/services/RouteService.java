@@ -5,6 +5,7 @@ import backend.tracking_travel.repo.RoutesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,8 +19,8 @@ public class RouteService {
         routesRepository.save(route);
     }
 
-    public Iterable<Route> findAllRoutes() {
-        return routesRepository.findAll();
+    public List<Route> findAllRoutes() {
+        return (List<Route>) routesRepository.findAll();
     }
 
     public Optional<Route> findRouteById (Long id) {

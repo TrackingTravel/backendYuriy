@@ -5,10 +5,13 @@ spring:
     username: postgres
     password: root
   jpa:
+    #выводит тела запросов к БД в консоль
+    show-sql: true
+    generate-ddl: false
+
     hibernate.ddl-auto: update
     properties:
       hibernate.jdbc.lob.non_contextual_creation: true
-    show-sql: true
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
