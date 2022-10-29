@@ -27,7 +27,7 @@ public class Route {
     private String description;
     private Long heightPeak;
     private Long distanceRoute;
-    private Duration durationRoute;
+    //private Duration durationRoute;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Country country;
