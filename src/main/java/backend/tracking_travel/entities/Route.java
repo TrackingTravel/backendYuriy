@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Duration;
-import java.util.List;
 
 @Entity
 @Table(name = "t_route")
@@ -20,11 +19,10 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 5, message = "Не меньше 5 знаков")
+    @Size(min = 2, message = "Не меньше 2 знаков")
     private String title;
-
-    private String linkToGPX;
     private String description;
+    private String linkToGPX;
     private Long heightPeak;
     private Long distanceRoute;
     //private Duration durationRoute;
