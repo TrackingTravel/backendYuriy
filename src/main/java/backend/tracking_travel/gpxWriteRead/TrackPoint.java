@@ -1,5 +1,7 @@
 package backend.tracking_travel.gpxWriteRead;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,8 @@ import java.util.Date;
  * @Date: October 08, 2021 56 seconds
  * @Description: Information properties of each point [it corresponds to the label attribute value in GPX]
  */
+
+@Data
 public class TrackPoint {
 
     private double latitude;
@@ -22,38 +26,6 @@ public class TrackPoint {
         this.latitude = latitude;
         this.longitude = longitude;
         this.elevation = elevation;
-        this.time = time;
-    }
-
-    public double getLatitude() {
-        return this.latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return this.longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Double getElevation() {
-        return this.elevation;
-    }
-
-    public void setElevation(Double elevation) {
-        this.elevation = elevation;
-    }
-
-    public Date getTime() {
-        return this.time;
-    }
-
-    public void setTime(Date time) {
         this.time = time;
     }
 

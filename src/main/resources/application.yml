@@ -12,6 +12,10 @@ spring:
     hibernate.ddl-auto: update
     properties:
       hibernate.jdbc.lob.non_contextual_creation: true
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+
+storage:
+  location: ./uploads

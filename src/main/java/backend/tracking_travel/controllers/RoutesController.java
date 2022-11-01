@@ -15,13 +15,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("api/routes")
 public class RoutesController {
-
     private final RouteService routeService;
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
     public ResponseEntity<?> create(@RequestBody Route route) {
         routeService.addRoute(route);
+        System.out.println(route.getId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
