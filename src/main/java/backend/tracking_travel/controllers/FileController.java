@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("api/storage")
 public class FileController {
 
@@ -54,6 +53,7 @@ public class FileController {
 
     @PostMapping("/upload-file")
     @Operation(summary = "Загрузка файла на сервер", description = "Позволяет загрузить файл на сервер")
+    @ResponseBody
     public FileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         String name = storageService.store(file);
 

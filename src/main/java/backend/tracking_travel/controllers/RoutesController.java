@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("api/routes")
 public class RoutesController {
     private final RouteService routeService;
+
+    public RoutesController(RouteService routeService) {
+        this.routeService = routeService;
+    }
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
