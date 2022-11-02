@@ -1,5 +1,6 @@
 package backend.tracking_travel.controllers;
 
+import backend.tracking_travel.entities.FileGPX;
 import backend.tracking_travel.entities.FileResponse;
 import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,25 +52,46 @@ public class FileController {
                 .body(resource);
     }
 
-    @PostMapping("/upload-file")
-    @Operation(summary = "Загрузка файла на сервер", description = "Позволяет загрузить файл на сервер")
+    @PostMapping("/upload-gpx")
+    @Operation(summary = "Загрузка файла gpx на сервер", description = "Позволяет загрузить файл gpx на сервер")
     @ResponseBody
-    public FileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+    public FileResponse uploadGpx(@RequestParam("file") MultipartFile file) {
         String name = storageService.store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/")
+                .path("/download/gpx/")
                 .path(name)
                 .toUriString();
 
-        return new FileResponse(name, uri, file.getContentType(), file.getSize());
+        return new FileGPX (name, uri, file.getContentType(), file.getSize());
     }
 
-    @PostMapping("/upload-multiple-files")
-    @Operation(summary = "Множественная загрузка файлов на сервер", description = "Позволяет загрузить сразу несколько файлов на сервер")
-    public List<FileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    @PostMapping("/upload-photo")
+    @Operation(summary = "Загрузка фотографии на сервер", description = "Позволяет загрузить фотографию на сервер")
+    @ResponseBody
+    public FileResponse uploadPhoto(@RequestParam("file") MultipartFile file) {
+        String name = storageService.store(file);
+
+        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/download/photo/")
+                .path(name)
+                .toUriString();
+
+        return new FileGPX (name, uri, file.getContentType(), file.getSize());
+    }
+
+    @PostMapping("/upload-multiple-gpx")
+    @Operation(summary = "Множественная загрузка файлов gpx на сервер", description = "Позволяет загрузить сразу несколько файлов gpx на сервер")
+    public List<FileResponse> uploadMultipleGpx (@RequestParam("files") MultipartFile[] files) {
         return Arrays.stream(files)
-                .map(file -> uploadFile(file))
+                .map(file -> uploadGpx(file))
+                .collect(Collectors.toList());
+    }
+    @PostMapping("/upload-multiple-photo")
+    @Operation(summary = "Множественная загрузка фотографий на сервер", description = "Позволяет загрузить сразу несколько фотографий на сервер")
+    public List<FileResponse> uploadMultiplePhoto (@RequestParam("files") MultipartFile[] files) {
+        return Arrays.stream(files)
+                .map(file -> uploadPhoto(file))
                 .collect(Collectors.toList());
     }
 }

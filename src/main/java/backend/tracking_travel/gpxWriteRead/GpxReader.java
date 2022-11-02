@@ -17,14 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @Author: LEAVES
- * @Version 1.0
- * @Date: October 08, 202, 57 seconds
- * @Description: Read the GPX file tool class
- * <p>
- * Read the GPX file with reference to the Java read the XML document
- */
 public class GpxReader {
 
     // Here the time format Select OK according to the time format in the GPX file.

@@ -1,24 +1,21 @@
 package backend.tracking_travel.entities;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "t_photo")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Photo {
+@Table(name = "PHOTO")
+public class Photo extends FileResponse {
+    public Photo(String name, String uri, String type, Long size) {
+        super(name, uri, type, size);
+    }
+
+    public Photo (){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String linkToPhoto;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Route route;
+
 }

@@ -14,13 +14,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-/**
- * @Author: LEAVES
- * @Version 1.0
- * @Date: October 08, 202, 14:32
- * @Description: Write GPX File Tool Class
- */
-
 public class GpxWriter {
 
     private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
