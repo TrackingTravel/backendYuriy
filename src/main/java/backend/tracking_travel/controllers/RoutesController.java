@@ -1,12 +1,17 @@
 package backend.tracking_travel.controllers;
 
+import backend.tracking_travel.entities.Country;
+import backend.tracking_travel.entities.FileGPX;
 import backend.tracking_travel.entities.Route;
+import backend.tracking_travel.entities.SubRoute;
 import backend.tracking_travel.services.RouteService;
+import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,16 +20,32 @@ import java.util.Optional;
 @RequestMapping("api/routes")
 public class RoutesController {
     private final RouteService routeService;
+    private final StorageService storageService;
 
-    public RoutesController(RouteService routeService) {
+
+    public RoutesController(RouteService routeService, StorageService storageService) {
         this.routeService = routeService;
+        this.storageService = storageService;
     }
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
-    public ResponseEntity<?> create(@RequestBody Route route) {
+    public ResponseEntity<?> create(@RequestBody SubRoute RequestSubRoute, @RequestParam("file") MultipartFile file) {
+        SubRoute subRoute = RequestSubRoute;
+        Route route = new Route();
+        route.setTitle(subRoute.getTitle());
+        route.setDescription(subRoute.getDescription());
+        route.setCountry(new Country(1L, "MONTENEGRO"));
+
+        String name = storageService.store(file);
+        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/download/gpx/")
+                .path(name)
+                .toUriString();
+        FileGPX fileGPX = new FileGPX(name, uri, file.getContentType(), file.getSize());
+        route.setFileGPX(fileGPX);
+
         routeService.addRoute(route);
-        System.out.println(route.getId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

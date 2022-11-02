@@ -1,22 +1,20 @@
 package backend.tracking_travel.entities;
 
 import backend.tracking_travel.gpxWriteRead.TrackPoint;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.time.Duration;
 import java.util.List;
 
 @Entity
 @Table(name = "ROUTES")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Route {
+    public Route (){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

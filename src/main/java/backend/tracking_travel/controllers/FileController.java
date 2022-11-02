@@ -2,6 +2,7 @@ package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.FileGPX;
 import backend.tracking_travel.entities.FileResponse;
+import backend.tracking_travel.entities.Photo;
 import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("api/storage")
 public class FileController {
 
-    private StorageService storageService;
+    private final StorageService storageService;
 
     public FileController(StorageService storageService) {
         this.storageService = storageService;
@@ -77,7 +78,7 @@ public class FileController {
                 .path(name)
                 .toUriString();
 
-        return new FileGPX (name, uri, file.getContentType(), file.getSize());
+        return new Photo (name, uri, file.getContentType(), file.getSize());
     }
 
     @PostMapping("/upload-multiple-gpx")

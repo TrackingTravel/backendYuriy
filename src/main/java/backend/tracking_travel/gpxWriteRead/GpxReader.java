@@ -56,7 +56,7 @@ public class GpxReader {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             // 3, convert the GPX document to be parsed into input stream so that the DOM parser parsing it
             Document document = dBuilder.parse(this.gpxFile);
-            // 4, find each byage point (you can also understand it as root node)
+            // 4, find each by age point (you can also understand it as root node)
             // Get the specified node
             // Need data in the TRK tag
             NodeList trk = document.getElementsByTagName("trk");
