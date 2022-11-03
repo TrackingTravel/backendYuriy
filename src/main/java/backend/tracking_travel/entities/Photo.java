@@ -4,15 +4,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PHOTO")
-public class Photo extends FileResponse {
-    public Photo(String name, String uri, String type, Long size) {
-        super(name, uri, type, size);
-    }
-
-    public Photo (){}
-
+public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+    private String uri;
+    private String type;
+    private Long size;
+
+    public Photo (){}
+
+    public Photo(String name, String uri, String type, Long size) {
+        this.name = name;
+        this.uri = uri;
+        this.type = type;
+        this.size = size;
+    }
 }

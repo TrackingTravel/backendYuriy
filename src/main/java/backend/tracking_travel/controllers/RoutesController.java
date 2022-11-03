@@ -2,8 +2,6 @@ package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.Country;
 import backend.tracking_travel.entities.Route;
-import backend.tracking_travel.entities.SubRoute;
-import backend.tracking_travel.gpxWriteRead.Track;
 import backend.tracking_travel.services.RouteService;
 import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,10 +46,10 @@ public class RoutesController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/getPoints/{id}")
+    /*@GetMapping(value = "/getPoints/{id}")
     public ResponseEntity<Track> getPointsOfRouteById (@PathVariable (name = "id") Long id){
 
-    }
+    }*/
 
     @GetMapping(value = "/getAll")
     @Operation(summary = "Запрос всех маршрутов", description = "Позволяет запросить все маршруты из БД")

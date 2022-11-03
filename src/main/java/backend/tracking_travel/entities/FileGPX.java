@@ -4,18 +4,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "GPX_FILES")
-public class FileGPX extends FileResponse {
-
-    public FileGPX(String name, String uri, String type, Long size) {
-        super(name, uri, type, size);
-    }
-
-    public FileGPX() {
-        super();
-    }
-
+public class FileGPX {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+    private String uri;
+    private String type;
+    private Long size;
+
+    public FileGPX() {}
+
+    public FileGPX(String name, String uri, String type, Long size) {
+        this.name = name;
+        this.uri = uri;
+        this.type = type;
+        this.size = size;
+    }
 }

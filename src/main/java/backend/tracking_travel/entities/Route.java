@@ -29,10 +29,10 @@ public class Route {
     //private Long distanceRoute;
     //private Duration durationRoute;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(orphanRemoval = true, cascade=CascadeType.ALL)
     private FileGPX fileGPX;
 
-    @OneToMany(mappedBy = "route", orphanRemoval = true)
+    @OneToMany(orphanRemoval = true, cascade=CascadeType.ALL)
     private List<Photo> photos;
 
     @ManyToOne(fetch = FetchType.EAGER)
