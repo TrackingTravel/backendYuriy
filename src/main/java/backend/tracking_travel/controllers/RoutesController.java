@@ -32,12 +32,12 @@ public class RoutesController {
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
-    public ResponseEntity<?> create(@RequestBody SubRoute RequestSubRoute, @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
-        SubRoute subRoute = RequestSubRoute;
+    public ResponseEntity<?> create(@RequestParam ("title") String title, @RequestParam ("description") String description,
+                                    @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
 
         Route route = new Route();
-        route.setTitle(subRoute.getTitle());
-        route.setDescription(subRoute.getDescription());
+        route.setTitle(title);
+        route.setDescription(description);
         route.setCountry(new Country(1L, "MONTENEGRO"));
 
         route.setFileGPX(uploadGpx(gpx));
