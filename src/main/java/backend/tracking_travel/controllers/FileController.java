@@ -1,11 +1,9 @@
 package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.FileGPX;
-import backend.tracking_travel.entities.FileResponse;
 import backend.tracking_travel.entities.Photo;
 import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
