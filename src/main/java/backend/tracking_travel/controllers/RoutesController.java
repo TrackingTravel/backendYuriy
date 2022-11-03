@@ -1,9 +1,9 @@
 package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.Country;
-import backend.tracking_travel.entities.FileGPX;
 import backend.tracking_travel.entities.Route;
 import backend.tracking_travel.entities.SubRoute;
+import backend.tracking_travel.gpxWriteRead.Track;
 import backend.tracking_travel.services.RouteService;
 import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,10 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
+
+import static backend.tracking_travel.controllers.FileController.uploadGpx;
+import static backend.tracking_travel.controllers.FileController.uploadMultiplePhoto;
 
 @RestController
 @RequestMapping("api/routes")
@@ -30,23 +32,25 @@ public class RoutesController {
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
-    public ResponseEntity<?> create(@RequestBody SubRoute RequestSubRoute, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> create(@RequestBody SubRoute RequestSubRoute, @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
         SubRoute subRoute = RequestSubRoute;
+
         Route route = new Route();
         route.setTitle(subRoute.getTitle());
         route.setDescription(subRoute.getDescription());
         route.setCountry(new Country(1L, "MONTENEGRO"));
 
-        String name = storageService.store(file);
-        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/gpx/")
-                .path(name)
-                .toUriString();
-        FileGPX fileGPX = new FileGPX(name, uri, file.getContentType(), file.getSize());
-        route.setFileGPX(fileGPX);
+        route.setFileGPX(uploadGpx(gpx));
+
+        route.setPhotos(uploadMultiplePhoto(photo));
 
         routeService.addRoute(route);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/getPoints/{id}")
+    public ResponseEntity<Track> getPointsOfRouteById (@PathVariable (name = "id") Long id){
+
     }
 
     @GetMapping(value = "/getAll")
@@ -71,7 +75,7 @@ public class RoutesController {
 
     @PutMapping(value = "/{id}")
     @Operation(summary = "Изменение маршрута по его ID", description = "Позволяет изменить маршрут по его ID из БД")
-    public ResponseEntity<?> update (@PathVariable (name = "id") Long id, @RequestBody Route route){
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Route route) {
         final boolean updated = routeService.updateRoute(route, id);
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)
@@ -80,7 +84,7 @@ public class RoutesController {
 
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Удаление маршрута по его ID", description = "Позволяет удалить маршрут по его ID из БД")
-    public ResponseEntity<?> delete (@PathVariable (name = "id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         final boolean deleted = routeService.deleteRoute(id);
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)

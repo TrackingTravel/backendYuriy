@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "GPX_FILES")
 public class FileGPX extends FileResponse {
 
-    public FileGPX (String name, String uri, String type, Long size) {
+    public FileGPX(String name, String uri, String type, Long size) {
         super(name, uri, type, size);
     }
 

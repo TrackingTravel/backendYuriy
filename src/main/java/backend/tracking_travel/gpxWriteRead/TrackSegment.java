@@ -1,15 +1,11 @@
 package backend.tracking_travel.gpxWriteRead;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author: LEAVES
- * @Version 1.0
- * @Date: October 08, 202, 37 seconds
- * @Description: Collection of each point [a track]
- */
-
+@Data
 public class TrackSegment {
 
     private List<TrackPoint> points;
@@ -38,8 +34,5 @@ public class TrackSegment {
         return this.points;
     }
 
-    public void setPoints(List<TrackPoint> points) {
-        this.points = points;
-    }
 }
 

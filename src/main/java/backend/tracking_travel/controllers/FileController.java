@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("api/storage")
 public class FileController {
 
-    private final StorageService storageService;
+    private static StorageService storageService = null;
 
     public FileController(StorageService storageService) {
         this.storageService = storageService;
@@ -33,10 +33,10 @@ public class FileController {
     public String listAllFiles(Model model) {
 
         model.addAttribute("files", storageService.loadAll().map(
-                path -> ServletUriComponentsBuilder.fromCurrentContextPath()
-                        .path("/download/")
-                        .path(path.getFileName().toString())
-                        .toUriString())
+                        path -> ServletUriComponentsBuilder.fromCurrentContextPath()
+                                .path("/download/*/")
+                                .path(path.getFileName().toString())
+                                .toUriString())
                 .collect(Collectors.toList()));
         return "listFiles";
     }
@@ -56,7 +56,7 @@ public class FileController {
     @PostMapping("/upload-gpx")
     @Operation(summary = "Загрузка файла gpx на сервер", description = "Позволяет загрузить файл gpx на сервер")
     @ResponseBody
-    public FileResponse uploadGpx(@RequestParam("file") MultipartFile file) {
+    public static FileGPX uploadGpx(@RequestParam("gpx") MultipartFile file) {
         String name = storageService.store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -64,13 +64,13 @@ public class FileController {
                 .path(name)
                 .toUriString();
 
-        return new FileGPX (name, uri, file.getContentType(), file.getSize());
+        return new FileGPX(name, uri, file.getContentType(), file.getSize());
     }
 
     @PostMapping("/upload-photo")
     @Operation(summary = "Загрузка фотографии на сервер", description = "Позволяет загрузить фотографию на сервер")
     @ResponseBody
-    public FileResponse uploadPhoto(@RequestParam("file") MultipartFile file) {
+    public static Photo uploadPhoto(@RequestParam("photo") MultipartFile file) {
         String name = storageService.store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -78,19 +78,20 @@ public class FileController {
                 .path(name)
                 .toUriString();
 
-        return new Photo (name, uri, file.getContentType(), file.getSize());
+        return new Photo(name, uri, file.getContentType(), file.getSize());
     }
 
     @PostMapping("/upload-multiple-gpx")
     @Operation(summary = "Множественная загрузка файлов gpx на сервер", description = "Позволяет загрузить сразу несколько файлов gpx на сервер")
-    public List<FileResponse> uploadMultipleGpx (@RequestParam("files") MultipartFile[] files) {
+    public static List<FileGPX> uploadMultipleGpx(@RequestParam("files") MultipartFile[] files) {
         return Arrays.stream(files)
                 .map(file -> uploadGpx(file))
                 .collect(Collectors.toList());
     }
+
     @PostMapping("/upload-multiple-photo")
     @Operation(summary = "Множественная загрузка фотографий на сервер", description = "Позволяет загрузить сразу несколько фотографий на сервер")
-    public List<FileResponse> uploadMultiplePhoto (@RequestParam("files") MultipartFile[] files) {
+    public static List<Photo> uploadMultiplePhoto(@RequestParam("files") MultipartFile[] files) {
         return Arrays.stream(files)
                 .map(file -> uploadPhoto(file))
                 .collect(Collectors.toList());

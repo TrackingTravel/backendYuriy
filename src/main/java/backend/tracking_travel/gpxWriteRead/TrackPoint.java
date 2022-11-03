@@ -8,20 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * @Author: LEAVES
- * @Version 1.0
- * @Date: October 08, 2021 56 seconds
- * @Description: Information properties of each point [it corresponds to the label attribute value in GPX]
- */
-
 @Data
-@Entity
 public class TrackPoint {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private double latitude;
     private double longitude;
     private Double elevation;

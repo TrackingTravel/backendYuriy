@@ -15,7 +15,4 @@ public class Photo extends FileResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Route route;
-
 }

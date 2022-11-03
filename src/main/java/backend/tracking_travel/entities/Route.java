@@ -1,5 +1,6 @@
 package backend.tracking_travel.entities;
 
+import backend.tracking_travel.gpxWriteRead.Track;
 import backend.tracking_travel.gpxWriteRead.TrackPoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class Route {
-    public Route (){}
+    public Route() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,16 +25,14 @@ public class Route {
     private String title;
     private String description;
 
-    @OneToMany
-    private List<TrackPoint> trackPoints;
     //private Long heightPeak;
     //private Long distanceRoute;
     //private Duration durationRoute;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private FileGPX fileGPX;
 
-    @OneToMany (mappedBy = "route", orphanRemoval = true)
+    @OneToMany(mappedBy = "route", orphanRemoval = true)
     private List<Photo> photos;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -1,16 +1,14 @@
 package backend.tracking_travel.gpxWriteRead;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author: LEAVES
- * @Version 1.0
- * @Date: October 08, 2021 47 seconds
- * @Description: Whole Track Information
- */
-
+@Data
 public class Track {
+
     private List<TrackSegment> segments;
 
     public Track() {
@@ -37,8 +35,5 @@ public class Track {
         return this.segments;
     }
 
-    public void setSegments(List<TrackSegment> segments) {
-        this.segments = segments;
-    }
 }
 
