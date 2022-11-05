@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 public class GpxReader {
 
     // Here the time format Select OK according to the time format in the GPX file.

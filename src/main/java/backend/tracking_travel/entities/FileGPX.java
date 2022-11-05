@@ -1,9 +1,12 @@
 package backend.tracking_travel.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "GPX_FILES")
+@Data
 public class FileGPX {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,6 +6,7 @@ import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

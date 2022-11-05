@@ -1,7 +1,5 @@
 package backend.tracking_travel.entities;
 
-import backend.tracking_travel.gpxWriteRead.Track;
-import backend.tracking_travel.gpxWriteRead.TrackPoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

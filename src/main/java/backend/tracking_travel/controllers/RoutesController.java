@@ -1,9 +1,12 @@
 package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.Country;
+import backend.tracking_travel.entities.FileGPX;
 import backend.tracking_travel.entities.Route;
+import backend.tracking_travel.gpxWriteRead.GpxReader;
+import backend.tracking_travel.gpxWriteRead.Track;
+import backend.tracking_travel.repo.FileGpxRepository;
 import backend.tracking_travel.services.RouteService;
-import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +23,16 @@ import static backend.tracking_travel.controllers.FileController.uploadMultipleP
 @RequestMapping("api/routes")
 public class RoutesController {
     private final RouteService routeService;
-    private final StorageService storageService;
+    private final FileGpxRepository fileGpxRepository;
 
-
-    public RoutesController(RouteService routeService, StorageService storageService) {
+    public RoutesController(RouteService routeService, FileGpxRepository fileGpxRepository) {
         this.routeService = routeService;
-        this.storageService = storageService;
+        this.fileGpxRepository = fileGpxRepository;
     }
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
-    public ResponseEntity<?> create(@RequestParam ("title") String title, @RequestParam ("description") String description,
+    public ResponseEntity<?> create(@RequestParam("title") String title, @RequestParam("description") String description,
                                     @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
 
         Route route = new Route();
@@ -46,10 +48,17 @@ public class RoutesController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    /*@GetMapping(value = "/getPoints/{id}")
-    public ResponseEntity<Track> getPointsOfRouteById (@PathVariable (name = "id") Long id){
-
-    }*/
+    @GetMapping(value = "/getPoints/{id}")
+    @Operation(summary = "Запрос данных трэка по ID файла gpx", description = "Позволяет запросить данные трэка по ID файла gpx из БД")
+    public ResponseEntity<Track> getPointsOfRouteById(@PathVariable(name = "id") Long id) {
+            Optional<FileGPX> fileGPX = fileGpxRepository.findById(id);
+            if (fileGPX.isPresent()) {
+                GpxReader gpxReader = new GpxReader("uploads/" + fileGPX.get().getName());
+                Track track = gpxReader.readData();
+                return new ResponseEntity<>(track, HttpStatus.OK);
+            }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
     @GetMapping(value = "/getAll")
     @Operation(summary = "Запрос всех маршрутов", description = "Позволяет запросить все маршруты из БД")
