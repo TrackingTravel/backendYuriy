@@ -8,10 +8,10 @@ spring:
     #выводит тела запросов к БД в консоль
     show-sql: true
     generate-ddl: false
-
     hibernate.ddl-auto: update
     properties:
       hibernate.jdbc.lob.non_contextual_creation: true
+
   servlet:
     multipart:
       max-file-size: 15MB

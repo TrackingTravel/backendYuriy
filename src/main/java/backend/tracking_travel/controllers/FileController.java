@@ -54,7 +54,6 @@ public class FileController {
 
     @PostMapping("/upload-gpx")
     @Operation(summary = "Загрузка файла gpx на сервер", description = "Позволяет загрузить файл gpx на сервер")
-    @ResponseBody
     public static FileGPX uploadGpx(@RequestParam("gpx") MultipartFile file) {
         String name = storageService.store(file);
 
@@ -68,7 +67,6 @@ public class FileController {
 
     @PostMapping("/upload-photo")
     @Operation(summary = "Загрузка фотографии на сервер", description = "Позволяет загрузить фотографию на сервер")
-    @ResponseBody
     public static Photo uploadPhoto(@RequestParam("photo") MultipartFile file) {
         String name = storageService.store(file);
 

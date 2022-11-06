@@ -34,7 +34,6 @@ public class RoutesController {
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
     public ResponseEntity<?> create(@RequestParam("title") String title, @RequestParam("description") String description,
                                     @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
-
         Route route = new Route();
         route.setTitle(title);
         route.setDescription(description);
@@ -51,12 +50,12 @@ public class RoutesController {
     @GetMapping(value = "/getPoints/{id}")
     @Operation(summary = "Запрос данных трэка по ID файла gpx", description = "Позволяет запросить данные трэка по ID файла gpx из БД")
     public ResponseEntity<Track> getPointsOfRouteById(@PathVariable(name = "id") Long id) {
-            Optional<FileGPX> fileGPX = fileGpxRepository.findById(id);
-            if (fileGPX.isPresent()) {
-                GpxReader gpxReader = new GpxReader("uploads/" + fileGPX.get().getName());
-                Track track = gpxReader.readData();
-                return new ResponseEntity<>(track, HttpStatus.OK);
-            }
+        Optional<FileGPX> fileGPX = fileGpxRepository.findById(id);
+        if (fileGPX.isPresent()) {
+            GpxReader gpxReader = new GpxReader("uploads/" + fileGPX.get().getName());
+            Track track = gpxReader.readData();
+            return new ResponseEntity<>(track, HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
