@@ -14,6 +14,9 @@ public class Photo {
     private String type;
     private Long size;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Route route;
+
     public Photo (){}
 
     public Photo(String name, String uri, String type, Long size) {

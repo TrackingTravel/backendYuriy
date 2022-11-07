@@ -7,6 +7,7 @@ import backend.tracking_travel.gpxWriteRead.GpxReader;
 import backend.tracking_travel.gpxWriteRead.Track;
 import backend.tracking_travel.repo.FileGpxRepository;
 import backend.tracking_travel.services.RouteService;
+import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
-import static backend.tracking_travel.controllers.FileController.uploadGpx;
-import static backend.tracking_travel.controllers.FileController.uploadMultiplePhoto;
-
 @RestController
 @RequestMapping("api/routes")
 public class RoutesController {
     private final RouteService routeService;
+
+    private final StorageService storageService;
     private final FileGpxRepository fileGpxRepository;
 
-    public RoutesController(RouteService routeService, FileGpxRepository fileGpxRepository) {
+    public RoutesController(RouteService routeService, StorageService storageService, FileGpxRepository fileGpxRepository) {
         this.routeService = routeService;
+        this.storageService = storageService;
         this.fileGpxRepository = fileGpxRepository;
     }
 
@@ -39,9 +40,9 @@ public class RoutesController {
         route.setDescription(description);
         route.setCountry(new Country(1L, "MONTENEGRO"));
 
-        route.setFileGPX(uploadGpx(gpx));
+        route.setFileGPX(storageService.storeGPX(gpx));
 
-        route.setPhotos(uploadMultiplePhoto(photo));
+        route.setPhotos(storageService.multiStorePhoto(photo));
 
         routeService.addRoute(route);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -54,6 +55,7 @@ public class RoutesController {
         if (fileGPX.isPresent()) {
             GpxReader gpxReader = new GpxReader("uploads/" + fileGPX.get().getName());
             Track track = gpxReader.readData();
+
             return new ResponseEntity<>(track, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
