@@ -2,7 +2,6 @@ package backend.tracking_travel.services;
 
 import backend.tracking_travel.entities.Route;
 import backend.tracking_travel.repo.RoutesRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,10 +9,13 @@ import java.util.Optional;
 
 
 @Service
-@RequiredArgsConstructor
 public class RouteService {
 
     private final RoutesRepository routesRepository;
+
+    public RouteService(RoutesRepository routesRepository) {
+        this.routesRepository = routesRepository;
+    }
 
     public void addRoute (Route route) {
         routesRepository.save(route);

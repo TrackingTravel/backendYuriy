@@ -54,14 +54,12 @@ public class FileController {
     @PostMapping("/upload-gpx")
     @Operation(summary = "Загрузка файла gpx на сервер", description = "Позволяет загрузить файл gpx на сервер")
     public void uploadGpx(@RequestParam("gpx") MultipartFile file) {
-
         storageService.storeGPX(file);
     }
 
     @PostMapping("/upload-photo")
     @Operation(summary = "Загрузка фотографии на сервер", description = "Позволяет загрузить фотографию на сервер")
     public void uploadPhoto(@RequestParam("photo") MultipartFile file) {
-
         storageService.storePhoto(file);
     }
 

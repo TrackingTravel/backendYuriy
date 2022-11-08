@@ -1,6 +1,7 @@
 package backend.tracking_travel.services;
 
 import backend.tracking_travel.entities.FileGPX;
+import backend.tracking_travel.entities.MapPhoto;
 import backend.tracking_travel.entities.Photo;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
