@@ -24,9 +24,9 @@ public class TestRoute {
     private String description;
     private String linkToMap;
 
-    private Long heightPeak;
-    private Long distanceRoute;
-    private Long durationRoute;
+    private String heightPeak;
+    private String distanceRoute;
+    private String durationRoute;
 
     @OneToOne(orphanRemoval = true, cascade=CascadeType.ALL)
     private MapPhoto mapPhoto;

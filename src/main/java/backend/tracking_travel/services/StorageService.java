@@ -22,6 +22,8 @@ public interface StorageService {
     Photo storePhoto (MultipartFile file);
     List<Photo> multiStorePhoto (MultipartFile[] files);
 
+    MapPhoto storeMapPhoto (MultipartFile file);
+
 
     Stream<Path> loadAll();
 

@@ -2,6 +2,7 @@ package backend.tracking_travel.services;
 
 import backend.tracking_travel.config.StorageProperties;
 import backend.tracking_travel.entities.FileGPX;
+import backend.tracking_travel.entities.MapPhoto;
 import backend.tracking_travel.entities.Photo;
 import backend.tracking_travel.exeptions.FileNotFoundException;
 import backend.tracking_travel.exeptions.StorageException;
@@ -103,6 +104,16 @@ public class FileSystemStorageService implements StorageService {
                 .map(this::storePhoto)
                 .collect(Collectors.toList());
     }
+    public MapPhoto storeMapPhoto(MultipartFile file) {
+        String name = store(file);
+
+        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/download/mapPhoto/")
+                .path(name)
+                .toUriString();
+        return new MapPhoto(name, uri, file.getContentType(), file.getSize());
+    }
+
 
     @Override
     public Stream<Path> loadAll() {

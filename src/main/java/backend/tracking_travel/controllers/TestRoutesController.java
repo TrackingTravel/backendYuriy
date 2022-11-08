@@ -1,9 +1,6 @@
 package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.*;
-import backend.tracking_travel.gpxWriteRead.GpxReader;
-import backend.tracking_travel.gpxWriteRead.Track;
-import backend.tracking_travel.repo.FileGpxRepository;
 import backend.tracking_travel.services.StorageService;
 import backend.tracking_travel.services.TestRoutesService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,14 +28,14 @@ public class TestRoutesController {
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
     public ResponseEntity<?> create(@RequestParam("title") String title, @RequestParam("description") String description,
                                     @RequestParam("mapLink") String linkToMap, @RequestParam("mapPhoto") MultipartFile mapPhoto,
-                                    @RequestParam("photo") MultipartFile[] photo, @RequestParam("peak") Long peak,
-                                    @RequestParam("distance") Long distance, @RequestParam("duration") Long duration) {
+                                    @RequestParam("photo") MultipartFile[] photo, @RequestParam("peak") String peak,
+                                    @RequestParam("distance") String distance, @RequestParam("duration") String duration) {
         TestRoute route = new TestRoute();
         route.setTitle(title);
         route.setDescription(description);
         route.setCountry(new Country(1L, "MONTENEGRO"));
         route.setLinkToMap(linkToMap);
-        route.setMapPhoto((MapPhoto) storageService.storePhoto(mapPhoto));
+        route.setMapPhoto(storageService.storeMapPhoto(mapPhoto));
         route.setPhoto(storageService.multiStorePhoto(photo));
         route.setHeightPeak(peak);
         route.setDistanceRoute(distance);
