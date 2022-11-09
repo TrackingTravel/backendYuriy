@@ -25,7 +25,11 @@ public class TestRoutesController {
 
 
     @PostMapping(value = "/create")
-    @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
+    @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД. " +
+            "Параметры запроса: title - название маршрута (формат string); description - описание маршрута (формат string);" +
+            "mapLink - ссылка на карту (формат string); mapPhoto - скриншот карты с проложенным маршрутом (формат file);" +
+            "photo - фотографии пейзажей маршрута (формат массив файлов file); peak - пиковая высота над уровнем моря на маршруте (формат string);" +
+            "distance - дистанция маршрута (формат string); duration - продолжительность маршрута (формат string)")
     public ResponseEntity<?> create(@RequestParam("title") String title, @RequestParam("description") String description,
                                     @RequestParam("mapLink") String linkToMap, @RequestParam("mapPhoto") MultipartFile mapPhoto,
                                     @RequestParam("photo") MultipartFile[] photo, @RequestParam("peak") String peak,

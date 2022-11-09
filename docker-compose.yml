@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+
+  tracking_travel_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_DB: "tracking_travel_db"
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
