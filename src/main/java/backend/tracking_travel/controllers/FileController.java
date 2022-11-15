@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("api/storage")
 public class FileController {
 
-    private static StorageService storageService;
+    private final StorageService storageService;
 
     public FileController(StorageService storageService) {
         this.storageService = storageService;

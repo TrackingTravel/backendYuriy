@@ -17,9 +17,6 @@ public class MapPhoto {
     private String type;
     private Long size;
 
-    @OneToOne
-    private TestRoute testRoute;
-
     public MapPhoto (){}
 
     public MapPhoto(String name, String uri, String type, Long size) {
