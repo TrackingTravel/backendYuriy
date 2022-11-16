@@ -15,6 +15,13 @@ public class Route {
     public Route() {
     }
 
+    public Route(Long id, String title, String description, Country country) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.country = country;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

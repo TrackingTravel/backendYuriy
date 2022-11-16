@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class RoutesController {
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
-    public ResponseEntity<?> create(@RequestParam("title") String title, @RequestParam("description") String description,
+    public ResponseEntity<?> create(@RequestParam("title") @Valid String title, @RequestParam("description") @Valid String description,
                                     @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
         Route route = new Route();
         route.setTitle(title);
