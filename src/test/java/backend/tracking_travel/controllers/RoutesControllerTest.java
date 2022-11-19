@@ -68,7 +68,6 @@ class RoutesControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[1].title", is("Example_2")));
-
     }
 
     @Test
