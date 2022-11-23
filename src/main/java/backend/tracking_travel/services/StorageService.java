@@ -6,6 +6,7 @@ import backend.tracking_travel.entities.Photo;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,18 +17,17 @@ public interface StorageService {
 
     String store(MultipartFile file);
 
-    FileGPX storeGPX (MultipartFile file);
-    List<FileGPX> multiStoreGPX (MultipartFile[] files);
+    FileGPX storeGPX(MultipartFile file);
 
-    Photo storePhoto (MultipartFile file);
-    List<Photo> multiStorePhoto (MultipartFile[] files);
+    List<FileGPX> multiStoreGPX(MultipartFile[] files);
 
-    MapPhoto storeMapPhoto (MultipartFile file);
+    Photo storePhoto(MultipartFile file);
 
+    List<Photo> multiStorePhoto(MultipartFile[] files);
+
+    MapPhoto storeMapPhoto(MultipartFile file);
 
     Stream<Path> loadAll();
-
-    Path load(String filename);
 
     Resource loadAsResource(String filename);
 

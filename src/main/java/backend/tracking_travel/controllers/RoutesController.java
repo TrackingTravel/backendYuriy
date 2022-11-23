@@ -9,6 +9,7 @@ import backend.tracking_travel.repo.FileGpxRepository;
 import backend.tracking_travel.services.RouteService;
 import backend.tracking_travel.services.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +20,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/routes")
 public class RoutesController {
     private final RouteService routeService;
     private final StorageService storageService;
     private final FileGpxRepository fileGpxRepository;
 
+    @Autowired
     public RoutesController(RouteService routeService, StorageService storageService, FileGpxRepository fileGpxRepository) {
         this.routeService = routeService;
         this.storageService = storageService;

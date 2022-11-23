@@ -4,9 +4,11 @@ import backend.tracking_travel.config.StorageProperties;
 import backend.tracking_travel.entities.FileGPX;
 import backend.tracking_travel.entities.MapPhoto;
 import backend.tracking_travel.entities.Photo;
+import backend.tracking_travel.entities.TestRoute;
 import backend.tracking_travel.exeptions.FileNotFoundException;
 import backend.tracking_travel.exeptions.StorageException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -26,6 +29,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,6 +37,9 @@ import java.util.stream.Stream;
 public class FileSystemStorageService implements StorageService {
 
     private final Path rootLocation;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
@@ -72,7 +79,7 @@ public class FileSystemStorageService implements StorageService {
         return filename;
     }
 
-    public FileGPX storeGPX (MultipartFile file) {
+    public FileGPX storeGPX(MultipartFile file) {
 
         String name = store(file);
 
@@ -83,7 +90,7 @@ public class FileSystemStorageService implements StorageService {
         return new FileGPX(name, uri, file.getContentType(), file.getSize());
     }
 
-    public List<FileGPX> multiStoreGPX (MultipartFile[] files) {
+    public List<FileGPX> multiStoreGPX(MultipartFile[] files) {
         return Arrays.stream(files)
                 .map(this::storeGPX)
                 .collect(Collectors.toList());
@@ -93,18 +100,33 @@ public class FileSystemStorageService implements StorageService {
         String name = store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                // в uri пишем путь чтобы он совпадал с запросом скачивания в api
                 .path("/download/photo/")
                 .path(name)
                 .toUriString();
         return new Photo(name, uri, file.getContentType(), file.getSize());
     }
 
-    public List<Photo> multiStorePhoto (@RequestParam("files") MultipartFile[] files) {
-        return Arrays.stream(files)
-                .map(this::storePhoto)
+    public List<Photo> multiStorePhoto(MultipartFile[] files) {
+        return Arrays.asList(files)
+                .stream()
+                .map(file -> storePhoto(file))
                 .collect(Collectors.toList());
     }
-    public MapPhoto storeMapPhoto(MultipartFile file) {
+
+    public MapPhoto storeMapPhoto(MultipartFile file){
+//        if (file != null) {
+//            File uploadDir = new File(uploadPath);
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+//
+//            file.transferTo(new File(uploadPath + "/" + resultFilename));
+//            return new MapPhoto(resultFilename, uploadPath + "/" + resultFilename, file.getContentType(), file.getSize());
+//        } else return null;
+
         String name = store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -127,14 +149,9 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public Path load(String filename) {
-        return rootLocation.resolve(filename);
-    }
-
-    @Override
     public Resource loadAsResource(String filename) {
         try {
-            Path file = load(filename);
+            Path file = this.rootLocation.resolve(filename).normalize();
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;

@@ -4,11 +4,13 @@ import backend.tracking_travel.entities.*;
 import backend.tracking_travel.services.StorageService;
 import backend.tracking_travel.services.TestRoutesService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +20,7 @@ public class TestRoutesController {
     private final TestRoutesService testRoutesService;
     private final StorageService storageService;
 
+    @Autowired
     public TestRoutesController(TestRoutesService testRoutesService, StorageService storageService) {
         this.testRoutesService = testRoutesService;
         this.storageService = storageService;
@@ -29,7 +32,7 @@ public class TestRoutesController {
     public ResponseEntity<?> create(@RequestParam("title") String title, @RequestParam("description") String description,
                                     @RequestParam("mapLink") String linkToMap, @RequestParam("mapPhoto") MultipartFile mapPhoto,
                                     @RequestParam("photo") MultipartFile[] photo, @RequestParam("peak") String peak,
-                                    @RequestParam("distance") String distance, @RequestParam("duration") String duration) {
+                                    @RequestParam("distance") String distance, @RequestParam("duration") String duration){
         TestRoute route = new TestRoute();
         route.setTitle(title);
         route.setDescription(description);

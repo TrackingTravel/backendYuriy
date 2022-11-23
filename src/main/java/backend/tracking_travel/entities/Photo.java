@@ -26,4 +26,5 @@ public class Photo {
         this.size = size;
     }
 
+
 }

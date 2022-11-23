@@ -13,15 +13,15 @@ public class FileGPX {
     private Long id;
 
     private String name;
-    private String uri;
+    private String filename;
     private String type;
     private Long size;
 
     public FileGPX() {}
 
-    public FileGPX(String name, String uri, String type, Long size) {
+    public FileGPX(String name, String filename, String type, Long size) {
         this.name = name;
-        this.uri = uri;
+        this.filename = filename;
         this.type = type;
         this.size = size;
     }

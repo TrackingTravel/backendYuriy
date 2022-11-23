@@ -35,9 +35,11 @@ public class Route {
     //private Duration durationRoute;
 
     @OneToOne(orphanRemoval = true, cascade=CascadeType.ALL)
+    @JoinColumn(name = "routeId")
     private FileGPX fileGPX;
 
     @OneToMany(orphanRemoval = true, cascade=CascadeType.ALL)
+    //@JoinColumn(name = "routeId")
     private List<Photo> photos;
 
     @ManyToOne(fetch = FetchType.EAGER)

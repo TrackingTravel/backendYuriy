@@ -19,7 +19,7 @@ public class TestRoutesService {
     }
 
     public List<TestRoute> findAllRoutes() {
-        return (List<TestRoute>) testRoutesRepository.findAll();
+        return testRoutesRepository.findAll();
     }
 
     public Optional<TestRoute> findRouteById (Long id) {

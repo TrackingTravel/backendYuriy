@@ -32,6 +32,7 @@ public class TestRoute {
     private MapPhoto mapPhoto;
 
     @OneToMany(orphanRemoval = true, cascade=CascadeType.ALL)
+    @JoinColumn(name = "testRouteId")
     private List<Photo> photo;
 
     @ManyToOne(fetch = FetchType.EAGER)
