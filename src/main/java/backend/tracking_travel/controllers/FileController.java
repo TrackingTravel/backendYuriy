@@ -54,7 +54,7 @@ public class FileController {
     }
 
     @GetMapping(value = "/getPhotoByRouteId/{id}")
-    @Operation(summary = "Запрос маршрута по его ID", description = "Позволяет запросить маршрут по его ID из БД")
+    @Operation(summary = "Запрос фотографий по ID маршрута", description = "Позволяет запросить фотографии по ID маршрута из БД")
     public ResponseEntity<List<Photo>> getPhotoByRouteId(@PathVariable(name = "id") Long id) {
         final Optional<TestRoute> optionalRoute = testRoutesRepository.findById(id);
         if (optionalRoute.isPresent()) {
@@ -63,15 +63,6 @@ public class FileController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-//    @GetMapping(value = "/getPhotoByRouteId/{id}")
-//    @Operation(summary = "Запрос маршрута по его ID", description = "Позволяет запросить маршрут по его ID из БД")
-//    public ResponseEntity<List<Photo>> getPhotoById(@PathVariable(name = "id") Long id) {
-//        final List<Photo> photo = photoRepository.findAllById(Collections.singleton(id));
-//        return !photo.isEmpty()
-//                ? new ResponseEntity<>(photo, HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
 
     @GetMapping("/download/photo/{filename:.+}")
     @Operation(summary = "Скачивание фото", description = "Позволяет скачать фото с сервера")

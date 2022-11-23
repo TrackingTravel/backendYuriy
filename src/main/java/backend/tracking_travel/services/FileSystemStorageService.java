@@ -38,9 +38,6 @@ public class FileSystemStorageService implements StorageService {
 
     private final Path rootLocation;
 
-    @Value("${upload.path}")
-    private String uploadPath;
-
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
         this.rootLocation = Paths.get(properties.getLocation());
@@ -115,18 +112,6 @@ public class FileSystemStorageService implements StorageService {
     }
 
     public MapPhoto storeMapPhoto(MultipartFile file){
-//        if (file != null) {
-//            File uploadDir = new File(uploadPath);
-//            if (!uploadDir.exists()) {
-//                uploadDir.mkdir();
-//            }
-//            String uuidFile = UUID.randomUUID().toString();
-//            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-//
-//            file.transferTo(new File(uploadPath + "/" + resultFilename));
-//            return new MapPhoto(resultFilename, uploadPath + "/" + resultFilename, file.getContentType(), file.getSize());
-//        } else return null;
-
         String name = store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()

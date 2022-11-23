@@ -63,7 +63,7 @@ class RoutesControllerTest {
         // когда происходит вызов метода в него подставляется List routes
         Mockito.when(routeService.findAllRoutes()).thenReturn(routes);
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/routes/getAll")
+                .get("/getAll")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
