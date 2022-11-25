@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +24,6 @@ public class TestRoutesController {
         this.testRoutesService = testRoutesService;
         this.storageService = storageService;
     }
-
 
     @PostMapping(value = "/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
@@ -70,8 +68,22 @@ public class TestRoutesController {
 
     @PutMapping(value = "/{id}")
     @Operation(summary = "Изменение маршрута по его ID", description = "Позволяет изменить маршрут по его ID из БД")
-    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody TestRoute route) {
-        final boolean updated = testRoutesService.updateRoute(route, id);
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestParam("title") String title, @RequestParam("description") String description,
+                                    @RequestParam("mapLink") String linkToMap, @RequestParam("mapPhoto") MultipartFile mapPhoto,
+                                    @RequestParam("photo") MultipartFile[] photo, @RequestParam("peak") String peak,
+                                    @RequestParam("distance") String distance, @RequestParam("duration") String duration) {
+        TestRoute updateRoute = new TestRoute();
+        updateRoute.setTitle(title);
+        updateRoute.setDescription(description);
+        updateRoute.setCountry(new Country(1L, "MONTENEGRO"));
+        updateRoute.setLinkToMap(linkToMap);
+        updateRoute.setMapPhoto(storageService.storeMapPhoto(mapPhoto));
+        updateRoute.setPhoto(storageService.multiStorePhoto(photo));
+        updateRoute.setHeightPeak(peak);
+        updateRoute.setDistanceRoute(distance);
+        updateRoute.setDurationRoute(duration);
+
+        final boolean updated = testRoutesService.updateRoute(updateRoute, id);
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
