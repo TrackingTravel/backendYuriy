@@ -22,3 +22,7 @@ storage:
 
 upload:
   path: /home/bones/Projects/Tracking_travel/uploads
+
+server:
+  servlet:
+    context-path: "/"
