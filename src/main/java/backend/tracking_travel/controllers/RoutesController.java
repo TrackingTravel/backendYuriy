@@ -32,7 +32,7 @@ public class RoutesController {
         this.fileGpxRepository = fileGpxRepository;
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "route/create")
     @Operation(summary = "Создание нового маршрута", description = "Позволяет создать новый маршрут и сохранить его в БД")
     public ResponseEntity<?> create(@RequestParam("title") @Valid String title, @RequestParam("description") @Valid String description,
                                     @RequestParam("gpx") MultipartFile gpx, @RequestParam("photo") MultipartFile[] photo) {
@@ -49,7 +49,7 @@ public class RoutesController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/getPoints/{id}")
+    @GetMapping(value = "routePoints/{id}")
     @Operation(summary = "Запрос данных трэка по ID файла gpx", description = "Позволяет запросить данные трэка по ID файла gpx из БД")
     public ResponseEntity<Track> getPointsOfRouteById(@PathVariable(name = "id") Long id) {
         Optional<FileGPX> fileGPX = fileGpxRepository.findById(id);
@@ -62,7 +62,7 @@ public class RoutesController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/routes")
     @Operation(summary = "Запрос всех маршрутов", description = "Позволяет запросить все маршруты из БД")
     public ResponseEntity<List<Route>> getAllRoutes() {
         final List<Route> routes = routeService.findAllRoutes();
@@ -71,7 +71,7 @@ public class RoutesController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "route/{id}")
     @Operation(summary = "Запрос маршрута по его ID", description = "Позволяет запросить маршрут по его ID из БД")
     public ResponseEntity<Route> getRouteById(@PathVariable(name = "id") Long id) {
         final Optional<Route> optionalRoute = routeService.findRouteById(id);
@@ -82,7 +82,7 @@ public class RoutesController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "route/{id}")
     @Operation(summary = "Изменение маршрута по его ID", description = "Позволяет изменить маршрут по его ID из БД")
     public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Route route) {
         final boolean updated = routeService.updateRoute(route, id);
@@ -91,7 +91,7 @@ public class RoutesController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "route/{id}")
     @Operation(summary = "Удаление маршрута по его ID", description = "Позволяет удалить маршрут по его ID из БД")
     public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         final boolean deleted = routeService.deleteRoute(id);
