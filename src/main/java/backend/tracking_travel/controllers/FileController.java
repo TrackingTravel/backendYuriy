@@ -44,7 +44,7 @@ public class FileController {
         this.testRoutesRepository = testRoutesRepository;
     }
 
-    @GetMapping(value = "/getAllPhoto")
+    @GetMapping(value = "/photo")
     @Operation(summary = "Запрос всех фотографий маршрутов", description = "Позволяет запросить все фотографии маршрутов из БД")
     public ResponseEntity<List<Photo>> getAllPhoto() {
         final List<Photo> photo = photoRepository.findAll();
@@ -53,7 +53,7 @@ public class FileController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/getPhotoByRouteId/{id}")
+    @GetMapping(value = "/photoByRouteId/{id}")
     @Operation(summary = "Запрос фотографий по ID маршрута", description = "Позволяет запросить фотографии по ID маршрута из БД")
     public ResponseEntity<List<Photo>> getPhotoByRouteId(@PathVariable(name = "id") Long id) {
         final Optional<TestRoute> optionalRoute = testRoutesRepository.findById(id);

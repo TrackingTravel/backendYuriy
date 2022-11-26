@@ -71,7 +71,7 @@ public class SwaggerConfig {
                         .title("Tracking_travel")
                         .version("1.0.0")
                         .contact(new Contact()
-                                .email("j-thrash@ya.ru")
+                                .email("Osmolovskiy.Yuriy@ya.ru")
                                 .url("https://github.com/j-thrash")
                                 .name("Osmolovkiy Yuriy")
                         )

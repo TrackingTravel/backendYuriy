@@ -121,6 +121,14 @@ public class FileSystemStorageService implements StorageService {
         return new MapPhoto(name, uri, file.getContentType(), file.getSize());
     }
 
+    public List<MapPhoto> multiStoreMapPhoto(MultipartFile[] files) {
+        return Arrays.asList(files)
+                .stream()
+                .map(file -> storeMapPhoto(file))
+                .collect(Collectors.toList());
+    }
+
+
 
     @Override
     public Stream<Path> loadAll() {

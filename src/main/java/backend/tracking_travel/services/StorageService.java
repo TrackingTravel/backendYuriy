@@ -27,6 +27,8 @@ public interface StorageService {
 
     MapPhoto storeMapPhoto(MultipartFile file);
 
+    List<MapPhoto> multiStoreMapPhoto (MultipartFile[] files);
+
     Stream<Path> loadAll();
 
     Resource loadAsResource(String filename);

@@ -28,8 +28,9 @@ public class TestRoute {
     private String distanceRoute;
     private String durationRoute;
 
-    @OneToOne(orphanRemoval = true, cascade=CascadeType.ALL)
-    private MapPhoto mapPhoto;
+    @OneToMany(orphanRemoval = true, cascade=CascadeType.ALL)
+    @JoinColumn(name = "testRouteId")
+    private List<MapPhoto> mapPhoto;
 
     @OneToMany(orphanRemoval = true, cascade=CascadeType.ALL)
     @JoinColumn(name = "testRouteId")
