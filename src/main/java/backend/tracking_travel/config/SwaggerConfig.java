@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-    //бин документации
 
     @Bean
     public OpenAPI customOpenAPI(@Value("${server.servlet.context-path}") String contextPath) {

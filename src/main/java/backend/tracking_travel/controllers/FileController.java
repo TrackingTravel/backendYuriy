@@ -64,9 +64,30 @@ public class FileController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/download/photo/{filename:.+}")
+    @GetMapping("/photo/download/{filename:.+}")
     @Operation(summary = "Скачивание фото", description = "Позволяет скачать фото с сервера")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String filename, HttpServletRequest request) {
+    public ResponseEntity<Resource> downloadPhoto(@PathVariable String filename, HttpServletRequest request) {
+
+        Resource resource = storageService.loadAsResource(filename);
+
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            logger.info("Не удалось определить тип файла.");        }
+
+        // Возврат к типу контента по умолчанию, если тип не может быть определен
+        if (contentType == null) {
+            contentType = "application/octet-stream";
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
+    @GetMapping("/mapPhoto/download/{filename:.+}")
+    @Operation(summary = "Скачивание скриншота карты", description = "Позволяет скачать скриншот карты с сервера")
+    public ResponseEntity<Resource> downloadMapPhoto(@PathVariable String filename, HttpServletRequest request) {
 
         Resource resource = storageService.loadAsResource(filename);
 

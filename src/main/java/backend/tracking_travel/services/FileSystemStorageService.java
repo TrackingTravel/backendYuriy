@@ -40,7 +40,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
-        this.rootLocation = Paths.get(properties.getLocation());
+        this.rootLocation = Paths.get(properties.getLocation()).toAbsolutePath().normalize();
     }
 
     @Override
@@ -96,9 +96,9 @@ public class FileSystemStorageService implements StorageService {
     public Photo storePhoto(MultipartFile file) {
         String name = store(file);
 
-        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+        String uri = ServletUriComponentsBuilder.fromHttpUrl("https://api.trackingtravel.me")
                 // в uri пишем путь чтобы он совпадал с запросом скачивания в api
-                .path("/download/photo/")
+                .path("/photo/download/")
                 .path(name)
                 .toUriString();
         return new Photo(name, uri, file.getContentType(), file.getSize());
@@ -114,8 +114,8 @@ public class FileSystemStorageService implements StorageService {
     public MapPhoto storeMapPhoto(MultipartFile file){
         String name = store(file);
 
-        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/mapPhoto/")
+        String uri = ServletUriComponentsBuilder.fromHttpUrl("https://api.trackingtravel.me")
+                .path("/mapPhoto/download/")
                 .path(name)
                 .toUriString();
         return new MapPhoto(name, uri, file.getContentType(), file.getSize());
