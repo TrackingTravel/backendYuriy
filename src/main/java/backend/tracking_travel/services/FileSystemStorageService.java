@@ -102,13 +102,7 @@ public class FileSystemStorageService implements StorageService {
                 .path(name)
                 .toUriString();
 
-        String url = ServletUriComponentsBuilder.fromHttpUrl("https://api.trackingtravel.me")
-                // в uri пишем путь чтобы он совпадал с запросом скачивания в api
-                .path("/uploads/")
-                .path(name)
-                .toUriString();
-
-        return new Photo(name, uri, url, file.getContentType(), file.getSize());
+        return new Photo(name, uri, file.getContentType(), file.getSize());
     }
 
     public List<Photo> multiStorePhoto(MultipartFile[] files) {
@@ -125,14 +119,7 @@ public class FileSystemStorageService implements StorageService {
                 .path("/mapPhoto/download/")
                 .path(name)
                 .toUriString();
-
-        String url = ServletUriComponentsBuilder.fromHttpUrl("https://api.trackingtravel.me")
-                // в uri пишем путь чтобы он совпадал с запросом скачивания в api
-                .path("/uploads/")
-                .path(name)
-                .toUriString();
-
-        return new MapPhoto(name, uri, url, file.getContentType(), file.getSize());
+        return new MapPhoto(name, uri, file.getContentType(), file.getSize());
     }
 
     public List<MapPhoto> multiStoreMapPhoto(MultipartFile[] files) {
