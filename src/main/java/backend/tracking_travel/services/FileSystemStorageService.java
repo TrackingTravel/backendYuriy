@@ -80,8 +80,8 @@ public class FileSystemStorageService implements StorageService {
 
         String name = store(file);
 
-        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/gpx/")
+        String uri = ServletUriComponentsBuilder.fromHttpUrl("https://api.trackingtravel.me")
+                .path("/gpx/download/")
                 .path(name)
                 .toUriString();
         return new FileGPX(name, uri, file.getContentType(), file.getSize());
