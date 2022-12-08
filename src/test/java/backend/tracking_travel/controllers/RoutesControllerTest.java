@@ -20,9 +20,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +33,6 @@ class RoutesControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
     @Autowired
     ObjectMapper mapper;
 
@@ -50,15 +49,7 @@ class RoutesControllerTest {
     Route ROUTE_2 = new Route(2L, "Example_2", "Example_description_2", (new Country(1L, "MONTENEGRO")));
 
     @Test
-    void create() {
-    }
-
-    @Test
-    void getPointsOfRouteById() {
-    }
-
-    @Test
-    void getAllRoutes() throws Exception {
+    void getAllRoutes_success() throws Exception {
         List<Route> routes = new ArrayList<>(Arrays.asList(ROUTE_1, ROUTE_2));
         // когда происходит вызов метода в него подставляется List routes
         Mockito.when(routeService.findAllRoutes()).thenReturn(routes);
@@ -71,8 +62,25 @@ class RoutesControllerTest {
     }
 
     @Test
-    void getRouteById() {
+    void getRouteById_success() throws Exception {
+        Mockito.when(routeService.findRouteById(ROUTE_1.getId())).thenReturn(Optional.of(ROUTE_1));
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/route/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", notNullValue()))
+                .andExpect(jsonPath("$.title", is("Example_1")));
     }
+
+    @Test
+    void create() {
+    }
+
+    @Test
+    void getPointsOfRouteById() {
+    }
+
+
 
     @Test
     void update() {
