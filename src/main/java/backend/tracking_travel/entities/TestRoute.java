@@ -21,6 +21,7 @@ public class TestRoute {
 
     @Size(min = 2, message = "Не меньше 2 знаков")
     private String title;
+    @Column(length = 10000)
     private String description;
     private String linkToMap;
 
