@@ -5,6 +5,8 @@ import backend.tracking_travel.services.StorageService;
 import backend.tracking_travel.services.TestRoutesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.Optional;
 
 @RestController
 public class TestRoutesController {
+    //private static final Logger logger = LoggerFactory.getLogger(TestRoutesController.class);
+
     private final TestRoutesService testRoutesService;
     private final StorageService storageService;
 
@@ -34,7 +38,7 @@ public class TestRoutesController {
                                     @RequestParam("photo") @Parameter(description = "Массив фотографий маршрута") MultipartFile[] photo,
                                     @RequestParam("peak") @Parameter(description = "Пиковая высота на маршруте") String peak,
                                     @RequestParam("distance") @Parameter(description = "Протяжённость маршрута") String distance,
-                                    @RequestParam("duration") @Parameter(description = "Продолжительность маршрута") String duration){
+                                    @RequestParam("duration") @Parameter(description = "Продолжительность маршрута") String duration) {
         TestRoute route = new TestRoute();
         route.setTitle(title);
         route.setDescription(description);
@@ -47,6 +51,7 @@ public class TestRoutesController {
         route.setDurationRoute(duration);
 
         testRoutesService.addRoute(route);
+        //logger.info("Маршрут " + title + " успешно создан");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -54,9 +59,12 @@ public class TestRoutesController {
     @Operation(summary = "Запрос всех маршрутов", description = "Позволяет запросить все маршруты из БД")
     public ResponseEntity<List<TestRoute>> getAllRoutes() {
         final List<TestRoute> routes = testRoutesService.findAllRoutes();
+
+        //logger.info("Маршруты успешно запрошены");
         return routes != null && !routes.isEmpty()
                 ? new ResponseEntity<>(routes, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
     @GetMapping(value = "/test-route/{id}")
@@ -65,8 +73,11 @@ public class TestRoutesController {
         final Optional<TestRoute> optionalRoute = testRoutesService.findRouteById(id);
         if (optionalRoute.isPresent()) {
             final TestRoute route = optionalRoute.get();
+
+            //logger.info("Показан маршрут с ID:" + id);
             return new ResponseEntity<>(route, HttpStatus.OK);
         }
+        //logger.info("Маршрут с ID:" + id + " не найден");
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
@@ -106,5 +117,4 @@ public class TestRoutesController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-
 }
