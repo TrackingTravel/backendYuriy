@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 public class TestRoutesController {
-    //private static final Logger logger = LoggerFactory.getLogger(TestRoutesController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestRoutesController.class);
 
     private final TestRoutesService testRoutesService;
     private final StorageService storageService;
@@ -51,7 +51,7 @@ public class TestRoutesController {
         route.setDurationRoute(duration);
 
         testRoutesService.addRoute(route);
-        //logger.info("Маршрут " + title + " успешно создан");
+        logger.info("Маршрут " + title + " успешно создан");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -60,7 +60,7 @@ public class TestRoutesController {
     public ResponseEntity<List<TestRoute>> getAllRoutes() {
         final List<TestRoute> routes = testRoutesService.findAllRoutes();
 
-        //logger.info("Маршруты успешно запрошены");
+        logger.info("Маршруты успешно запрошены");
         return routes != null && !routes.isEmpty()
                 ? new ResponseEntity<>(routes, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -74,10 +74,10 @@ public class TestRoutesController {
         if (optionalRoute.isPresent()) {
             final TestRoute route = optionalRoute.get();
 
-            //logger.info("Показан маршрут с ID:" + id);
+            logger.info("Показан маршрут с ID:" + id);
             return new ResponseEntity<>(route, HttpStatus.OK);
         }
-        //logger.info("Маршрут с ID:" + id + " не найден");
+        logger.info("Маршрут с ID:" + id + " не найден");
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
