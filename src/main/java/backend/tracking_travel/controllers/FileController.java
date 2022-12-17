@@ -2,6 +2,7 @@ package backend.tracking_travel.controllers;
 
 import backend.tracking_travel.entities.Photo;
 import backend.tracking_travel.entities.TestRoute;
+import backend.tracking_travel.exeptions.FileNotFoundException;
 import backend.tracking_travel.repo.PhotoRepository;
 import backend.tracking_travel.repo.TestRoutesRepository;
 import backend.tracking_travel.services.StorageService;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,12 +21,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class FileController {
-    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+    static final Logger logger = LoggerFactory.getLogger(FileController.class);
+
     private final StorageService storageService;
     private final PhotoRepository photoRepository;
     private final TestRoutesRepository testRoutesRepository;
@@ -56,6 +62,18 @@ public class FileController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/log")
+    @Operation(summary = "Скачивание файла лога", description = "Позволяет скачать файл лога с сервера")
+    public ResponseEntity<Resource> downloadLogFile() throws MalformedURLException {
+        Path file = Paths.get("./application.log").normalize();
+        Resource resource = new UrlResource(file.toUri());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
+
+
     @GetMapping("/photo/download/{filename:.+}")
     @Operation(summary = "Скачивание фото", description = "Позволяет скачать фото с сервера")
     public ResponseEntity<Resource> downloadPhoto(@PathVariable String filename, HttpServletRequest request) {
@@ -66,7 +84,8 @@ public class FileController {
         try {
             contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
         } catch (IOException ex) {
-            logger.info("Не удалось определить тип файла.");        }
+            logger.info("Не удалось определить тип файла.");
+        }
 
         // Возврат к типу контента по умолчанию, если тип не может быть определен
         if (contentType == null) {
@@ -77,6 +96,7 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
+
     @GetMapping("/mapPhoto/download/{filename:.+}")
     @Operation(summary = "Скачивание скриншота карты", description = "Позволяет скачать скриншот карты с сервера")
     public ResponseEntity<Resource> downloadMapPhoto(@PathVariable String filename, HttpServletRequest request) {
@@ -87,7 +107,8 @@ public class FileController {
         try {
             contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
         } catch (IOException ex) {
-            logger.info("Не удалось определить тип файла.");        }
+            logger.info("Не удалось определить тип файла.");
+        }
 
         // Возврат к типу контента по умолчанию, если тип не может быть определен
         if (contentType == null) {

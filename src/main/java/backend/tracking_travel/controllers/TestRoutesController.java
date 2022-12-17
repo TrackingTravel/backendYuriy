@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 public class TestRoutesController {
-    private static final Logger logger = LoggerFactory.getLogger(TestRoutesController.class);
+    static final Logger logger = LoggerFactory.getLogger(TestRoutesController.class);
 
     private final TestRoutesService testRoutesService;
     private final StorageService storageService;

@@ -2,6 +2,7 @@ package backend.tracking_travel.services;
 
 import backend.tracking_travel.entities.Route;
 import backend.tracking_travel.repo.RoutesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +14,12 @@ public class RouteService {
 
     private final RoutesRepository routesRepository;
 
+    @Autowired
     public RouteService(RoutesRepository routesRepository) {
         this.routesRepository = routesRepository;
     }
 
-    public void addRoute (Route route) {
+    public void addRoute(Route route) {
         routesRepository.save(route);
     }
 
@@ -25,12 +27,12 @@ public class RouteService {
         return (List<Route>) routesRepository.findAll();
     }
 
-    public Optional<Route> findRouteById (Long id) {
+    public Optional<Route> findRouteById(Long id) {
         return routesRepository.findById(id);
     }
 
-    public boolean updateRoute (Route route, Long id) {
-        if (routesRepository.existsById(id)){
+    public boolean updateRoute(Route route, Long id) {
+        if (routesRepository.existsById(id)) {
             route.setId(id);
             routesRepository.save(route);
             return true;
@@ -38,7 +40,7 @@ public class RouteService {
         return false;
     }
 
-    public boolean deleteRoute (Long id) {
+    public boolean deleteRoute(Long id) {
         if (routesRepository.existsById(id)) {
             routesRepository.deleteById(id);
             return true;

@@ -20,6 +20,10 @@ spring:
 storage:
   location: ./uploads
 
+logging:
+  file:
+    name: application.log
+
 server:
   servlet:
     context-path: "/"

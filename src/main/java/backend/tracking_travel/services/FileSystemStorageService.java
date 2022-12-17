@@ -129,8 +129,6 @@ public class FileSystemStorageService implements StorageService {
                 .collect(Collectors.toList());
     }
 
-
-
     @Override
     public Stream<Path> loadAll() {
         try {
