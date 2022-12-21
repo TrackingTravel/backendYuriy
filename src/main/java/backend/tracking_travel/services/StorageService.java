@@ -81,7 +81,8 @@ public class StorageService {
     }
 
     public List<FileGPX> multiStoreGPX(MultipartFile[] files) {
-        return Arrays.stream(files)
+        return Arrays.asList(files)
+                .stream()
                 .map(this::storeGPX)
                 .collect(Collectors.toList());
     }

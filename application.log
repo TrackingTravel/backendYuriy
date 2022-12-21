@@ -1,24 +1,204 @@
-2022-12-18 13:51:42.126  INFO 109254 --- [main] b.t.TrackingTravelApplication            : Starting TrackingTravelApplication using Java 17.0.5 on Z690 with PID 109254 (/home/yuriy/Projects/Tracking_travel/target/classes started by yuriy in /home/yuriy/Projects/Tracking_travel)
-2022-12-18 13:51:42.127  INFO 109254 --- [main] b.t.TrackingTravelApplication            : No active profile set, falling back to 1 default profile: "default"
-2022-12-18 13:51:42.387  INFO 109254 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-18 13:51:42.408  INFO 109254 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 6 JPA repository interfaces.
-2022-12-18 13:51:42.591  INFO 109254 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-18 13:51:42.595  INFO 109254 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-18 13:51:42.595  INFO 109254 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
-2022-12-18 13:51:42.636  INFO 109254 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-18 13:51:42.636  INFO 109254 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 491 ms
-2022-12-18 13:51:42.667  INFO 109254 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-18 13:51:42.792  INFO 109254 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-18 13:51:42.821  INFO 109254 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-18 13:51:42.843  INFO 109254 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
-2022-12-18 13:51:42.908  INFO 109254 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-18 13:51:42.952  INFO 109254 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2022-12-18 13:51:43.271  INFO 109254 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-18 13:51:43.278  INFO 109254 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 13:51:43.426  WARN 109254 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-12-18 13:51:43.684  INFO 109254 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-12-18 13:51:43.688  INFO 109254 --- [main] b.t.TrackingTravelApplication            : Started TrackingTravelApplication in 1.752 seconds (JVM running for 1.977)
-2022-12-18 13:51:43.689  INFO 109254 --- [main] b.t.TrackingTravelApplication            : Начало работы приложения Sun Dec 18 13:51:43 MSK 2022
-2022-12-18 13:51:51.002  INFO 109254 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 13:51:51.003  INFO 109254 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-18 13:51:51.009  INFO 109254 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 13:12:44.707  INFO 184886 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 184886 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 13:12:44.711  INFO 184886 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 13:12:44.975  INFO 184886 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 13:12:44.996  INFO 184886 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 6 JPA repository interfaces.
+2022-12-21 13:12:45.376  INFO 184886 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 13:12:45.505  INFO 184886 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 13:12:45.545  INFO 184886 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 13:12:45.561  INFO 184886 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 13:12:45.574  INFO 184886 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 13:12:45.614  INFO 184886 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 13:12:45.894  INFO 184886 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 13:12:45.897  INFO 184886 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 13:12:46.156  WARN 184886 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 13:12:46.865  INFO 184886 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 13:12:46.865  INFO 184886 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 13:12:46.866  INFO 184886 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-12-21 13:12:46.878  INFO 184886 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.288 seconds (JVM running for 2.688)
+2022-12-21 13:12:46.965  INFO 184886 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 13:12:46.966  INFO 184886 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 13:12:46.971  INFO 184886 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 13:55:22.909  INFO 191802 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 191802 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 13:55:22.909  INFO 191802 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 13:55:23.172  INFO 191802 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 13:55:23.195  INFO 191802 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 6 JPA repository interfaces.
+2022-12-21 13:55:23.563  INFO 191802 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 13:55:23.709  INFO 191802 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 13:55:23.750  INFO 191802 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 13:55:23.767  INFO 191802 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 13:55:23.778  INFO 191802 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 13:55:23.817  INFO 191802 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 13:55:24.090  INFO 191802 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 13:55:24.093  INFO 191802 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 13:55:24.354  WARN 191802 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 13:55:24.945  INFO 191802 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 13:55:24.945  INFO 191802 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 13:55:24.946  INFO 191802 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-12-21 13:55:24.957  INFO 191802 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.167 seconds (JVM running for 2.582)
+2022-12-21 13:55:25.046  INFO 191802 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 13:55:25.047  INFO 191802 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 13:55:25.050  INFO 191802 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 14:09:19.948  INFO 194831 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 194831 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 14:09:19.949  INFO 194831 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 14:09:20.211  INFO 194831 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 14:09:20.233  INFO 194831 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 6 JPA repository interfaces.
+2022-12-21 14:09:20.607  INFO 194831 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 14:09:20.731  INFO 194831 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 14:09:20.769  INFO 194831 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 14:09:20.785  INFO 194831 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 14:09:20.797  INFO 194831 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 14:09:20.835  INFO 194831 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 14:09:21.106  INFO 194831 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 14:09:21.110  INFO 194831 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:09:21.377  WARN 194831 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 14:09:21.981  INFO 194831 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 14:09:21.982  INFO 194831 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 14:09:21.982  INFO 194831 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-21 14:09:21.994  INFO 194831 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.16 seconds (JVM running for 2.641)
+2022-12-21 14:09:22.080  INFO 194831 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:09:22.081  INFO 194831 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 14:09:22.084  INFO 194831 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 14:11:29.796  INFO 195300 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 195300 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 14:11:29.796  INFO 195300 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 14:11:30.073  INFO 195300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 14:11:30.096  INFO 195300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 6 JPA repository interfaces.
+2022-12-21 14:11:30.504  INFO 195300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 14:11:30.644  INFO 195300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 14:11:30.686  INFO 195300 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 14:11:30.704  INFO 195300 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 14:11:30.718  INFO 195300 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 14:11:30.770  INFO 195300 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 14:11:31.059  INFO 195300 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 14:11:31.063  INFO 195300 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:11:31.344  WARN 195300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 14:11:32.070  INFO 195300 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 14:11:32.070  INFO 195300 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 14:11:32.070  INFO 195300 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-21 14:11:32.081  INFO 195300 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.415 seconds (JVM running for 2.906)
+2022-12-21 14:11:32.167  INFO 195300 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:11:32.168  INFO 195300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 14:11:32.172  INFO 195300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 14:11:52.065  INFO 195630 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 195630 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 14:11:52.066  INFO 195630 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 14:11:52.316  INFO 195630 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 14:11:52.337  INFO 195630 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 6 JPA repository interfaces.
+2022-12-21 14:11:52.727  INFO 195630 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 14:11:52.862  INFO 195630 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 14:11:52.899  INFO 195630 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 14:11:52.916  INFO 195630 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 14:11:52.929  INFO 195630 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 14:11:52.969  INFO 195630 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 14:11:53.235  INFO 195630 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 14:11:53.238  INFO 195630 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:11:53.501  WARN 195630 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 14:11:54.250  INFO 195630 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 14:11:54.250  INFO 195630 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 14:11:54.250  INFO 195630 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-21 14:11:54.261  INFO 195630 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.316 seconds (JVM running for 2.762)
+2022-12-21 14:11:54.347  INFO 195630 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:11:54.348  INFO 195630 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 14:11:54.352  INFO 195630 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 14:12:04.299  INFO 195925 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 195925 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 14:12:04.300  INFO 195925 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 14:12:04.569  INFO 195925 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 14:12:04.590  INFO 195925 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 6 JPA repository interfaces.
+2022-12-21 14:12:04.953  INFO 195925 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 14:12:05.089  INFO 195925 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 14:12:05.128  INFO 195925 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 14:12:05.144  INFO 195925 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 14:12:05.156  INFO 195925 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 14:12:05.196  INFO 195925 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 14:12:05.492  INFO 195925 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 14:12:05.495  INFO 195925 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:12:05.748  WARN 195925 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 14:12:06.319  INFO 195925 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 14:12:06.319  INFO 195925 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 14:12:06.320  INFO 195925 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-21 14:12:06.329  INFO 195925 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.151 seconds (JVM running for 2.59)
+2022-12-21 14:12:06.408  INFO 195925 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:12:06.409  INFO 195925 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 14:12:06.413  INFO 195925 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 14:12:17.939  INFO 196260 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 196260 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 14:12:17.939  INFO 196260 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 14:12:18.211  INFO 196260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 14:12:18.232  INFO 196260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 6 JPA repository interfaces.
+2022-12-21 14:12:18.598  INFO 196260 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 14:12:18.724  INFO 196260 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 14:12:18.764  INFO 196260 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 14:12:18.781  INFO 196260 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 14:12:18.794  INFO 196260 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 14:12:18.835  INFO 196260 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 14:12:19.097  INFO 196260 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 14:12:19.100  INFO 196260 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:12:19.374  WARN 196260 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 14:12:19.979  INFO 196260 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 14:12:19.979  INFO 196260 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 14:12:19.980  INFO 196260 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-12-21 14:12:19.991  INFO 196260 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.17 seconds (JVM running for 2.565)
+2022-12-21 14:12:20.073  INFO 196260 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:12:20.074  INFO 196260 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 14:12:20.078  INFO 196260 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 14:12:45.775  INFO 196583 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 196583 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 14:12:45.776  INFO 196583 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 14:12:46.051  INFO 196583 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 14:12:46.072  INFO 196583 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 6 JPA repository interfaces.
+2022-12-21 14:12:46.451  INFO 196583 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 14:12:46.586  INFO 196583 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 14:12:46.626  INFO 196583 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 14:12:46.641  INFO 196583 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 14:12:46.654  INFO 196583 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 14:12:46.692  INFO 196583 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 14:12:46.958  INFO 196583 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 14:12:46.961  INFO 196583 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:12:47.229  WARN 196583 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 14:12:47.817  INFO 196583 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 14:12:47.818  INFO 196583 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 14:12:47.818  INFO 196583 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-21 14:12:47.829  INFO 196583 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.17 seconds (JVM running for 2.627)
+2022-12-21 14:12:47.913  INFO 196583 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 14:12:47.914  INFO 196583 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 14:12:47.918  INFO 196583 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 15:33:57.987  INFO 206778 --- [main] b.t.controllers.RoutesControllerTest     : Starting RoutesControllerTest using Java 17.0.5 on Z690 with PID 206778 (started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 15:33:57.987  INFO 206778 --- [main] b.t.controllers.RoutesControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 15:33:58.236  INFO 206778 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 15:33:58.257  INFO 206778 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 6 JPA repository interfaces.
+2022-12-21 15:33:58.634  INFO 206778 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 15:33:58.761  INFO 206778 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 15:33:58.800  INFO 206778 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 15:33:58.816  INFO 206778 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 15:33:58.829  INFO 206778 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 15:33:58.868  INFO 206778 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 15:33:59.146  INFO 206778 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 15:33:59.149  INFO 206778 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 15:33:59.385  WARN 206778 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 15:33:59.948  INFO 206778 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-12-21 15:33:59.949  INFO 206778 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-12-21 15:33:59.949  INFO 206778 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2022-12-21 15:33:59.958  INFO 206778 --- [main] b.t.controllers.RoutesControllerTest     : Started RoutesControllerTest in 2.158 seconds (JVM running for 2.625)
+2022-12-21 15:34:00.048  INFO 206778 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 15:34:00.049  INFO 206778 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 15:34:00.052  INFO 206778 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-21 18:35:18.090  INFO 220661 --- [main] b.t.TrackingTravelApplication            : Starting TrackingTravelApplication using Java 17.0.5 on Z690 with PID 220661 (/home/yuriy/Projects/Tracking_travel/target/classes started by yuriy in /home/yuriy/Projects/Tracking_travel)
+2022-12-21 18:35:18.090  INFO 220661 --- [main] b.t.TrackingTravelApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-12-21 18:35:18.329  INFO 220661 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-21 18:35:18.348  INFO 220661 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 6 JPA repository interfaces.
+2022-12-21 18:35:18.518  INFO 220661 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-21 18:35:18.522  INFO 220661 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-21 18:35:18.522  INFO 220661 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-21 18:35:18.561  INFO 220661 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-21 18:35:18.561  INFO 220661 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 455 ms
+2022-12-21 18:35:18.593  INFO 220661 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-21 18:35:18.693  INFO 220661 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-21 18:35:18.719  INFO 220661 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-21 18:35:18.733  INFO 220661 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-21 18:35:18.786  INFO 220661 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-21 18:35:18.826  INFO 220661 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-21 18:35:19.132  INFO 220661 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-21 18:35:19.136  INFO 220661 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 18:35:19.285  WARN 220661 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-21 18:35:19.543  INFO 220661 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-21 18:35:19.547  INFO 220661 --- [main] b.t.TrackingTravelApplication            : Started TrackingTravelApplication in 1.644 seconds (JVM running for 1.866)
+2022-12-21 18:35:19.549  INFO 220661 --- [main] b.t.TrackingTravelApplication            : Начало работы приложения Wed Dec 21 18:35:19 MSK 2022
+2022-12-21 18:35:22.986  INFO 220661 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-21 18:35:22.989  INFO 220661 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-21 18:35:22.995  INFO 220661 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
